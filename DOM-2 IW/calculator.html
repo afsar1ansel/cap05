@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+   
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        #calculator {
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        #input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: right;
+        }
+        
+        #numbers {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        #numbers > div {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .number:hover{
+            background-color: #e0e0e0;
+        }
+        .black{
+            color: white;
+            background-color: black;
+        }
+      #calculator > #numbers > .black:hover{
+            color: red;
+            font-weight: bolder;
+        }
+        .c{
+            background-color: red;
+            color: white;
+        }
+        .c:hover{
+            background-color: rgb(241, 2, 2);
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="color: teal;">Masai Calculator</h1>
+    <div id="calculator">
+        <input type="text" name="xxxx" id="input">
+        <div id="numbers">
+            <div onclick="one()" class="number">1</div>
+            <div class="number">2</div>
+            <div class="number">3</div>
+            <div class="black">+</div>
+            <div class="number">4</div>
+            <div class="number">5</div>
+            <div class="number">6</div>
+            <div class="black">-</div>
+            <div class="number">7</div>
+            <div class="number">8</div>
+            <div class="number">9</div>
+            <div class="black">*</div>
+            <div class="c"><b>C</b></div>
+            <div class="number">0</div>
+            <div class="black">=</div>
+            <div class="black">/</div>
+        </div>
+    </div>
+</body>
+<script>
+    let dis = document.getElementById("input")
+   let btn = document.querySelectorAll("#numbers>div");
+   
+   for(let i=0;i<btn.length;i++){
+    btn[i].addEventListener('click', ev)
+   }
+
+    let ans = "";
+    let flag=true;
+    function ev(e){
+        let tn=e.target.innerText;
+
+        if(tn=="C"){
+
+            ans="";
+            dis.value="";
+            flag=true;
+
+        }else if(tn=="="&&flag==true){
+            
+                dis.value=eval(ans);
+            ans = eval(ans);
+            flag=false;
+            
+        }
+        else{
+           if(flag==false&& tn!="+"&&tn!="-"&&tn!="*"&&tn!="/"){
+            ans="";
+            flag=true;
+           }else{
+            flag=true;
+           }
+            ans=ans+tn;
+            dis.value=ans;
+            
+        }
+    }
+</script>
+</html>
+
+
+

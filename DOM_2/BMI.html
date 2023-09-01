@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Check your BMI</h1>
+
+    <h4>Enter Your weight and Height to check your BMI results</h4>
+
+    <h4>put your Wieght is here (KG)</h4>
+
+    <input type="text" id="Wieght">
+    <br>
+    <h4>And your height in here (CM)</h4>
+    
+    <input type="text" name="" id="height">
+    <div><button id="btn">Calculate BMI</button></div>
+    
+
+    <br>
+    <br>
+    <h2 id="display"></h2>
+
+</body>
+<script>
+    let inp1 = document.getElementById("Wieght")
+    let inp2 = document.getElementById('height')
+    let sum = document.getElementById('btn')
+    let dis = document.getElementById('display')
+    sum.addEventListener('click', function(){
+        let ans = (Number(inp1.value)*10000)/(Number(inp2.value)*Number(inp2.value));
+        console.log(ans)
+
+        if(ans<=18.4){
+            dis.innerText = 'UnderWeight'
+        }else if(ans>=15.5 &&ans<=24.9){
+            dis.innerText = 'Normal Weight'
+        }else if(ans>=25 && ans <=29.9){
+            dis.innerText = 'Overweight'
+        }else if(ans>=30){
+            dis.innerText = 'Obese'
+        }
+
+    })
+
+</script>
+</html>

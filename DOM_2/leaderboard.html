@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+   
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+            /* border: 1px solid black; */
+            
+        }
+        #score{
+            display: flex;
+            /* flex-direction: space-between; */
+            justify-content: space-between;
+            width: 10%;
+        }
+        #score>div>input{
+            width: 50px;
+            height: 36px;
+        }
+        #inp{
+            display: flex;
+            /* flex-direction: space-between; */
+            justify-content: center;
+            width: 40%;
+            /* border: 1px solid red; */
+        }
+        #inp>input{
+            height: 50px;
+            text-align: center;
+
+        }
+        #numbers{
+            display: grid;
+            grid-template-columns: repeat(3,0fr);
+            width: 20%;
+            gap: 4px;
+            align-content: center;
+           justify-content: center;
+        }
+        #numbers>div{
+           
+        }
+        #numbers> .num{
+            border: 1px solid black;
+            height: 40px;
+            width: 40px;
+            text-align: center;
+        }
+        button{
+            width: 10%;
+            height: 50px;
+            background-color: black;
+            color: whitesmoke;
+        }
+        #min{
+            background-color: red;
+        }
+        #max{
+            background-color: green;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="score">
+        <div>
+        <input type="text" name="" id="min" value="43">
+        <p>min</p>
+        </div>
+        <div>
+            <input type="text" name="" id="max" value="2019">
+            <p>max</p>
+        </div>
+    </div>
+    <div>Score</div>
+    <div id="inp">
+          
+        <input style="background-color: gray;" type="text" name="" id="display">
+    </div>
+    <br>
+    <div id="numbers">
+        <div style="background-color: rgb(31, 93, 31);" class="num">1</div>
+        <div style="background-color: orange;" class="num">2</div>
+        <div style="background-color: rgb(31, 93, 31);" class="num">3</div>
+        <div style="background-color: orange;" class="num">4</div>
+        <div style="background-color: orange;" class="num">5</div>
+        <div style="background-color: orange;" class="num">6</div>
+        <div style="background-color: rgb(31, 93, 31);" class="num">7</div>
+        <div style="background-color: orange;" class="num">8</div>
+        <div style="background-color: rgb(31, 93, 31);" class="num">9</div>
+        <div ></div>
+        <div style="background-color: purple;" class="num">0</div>
+        <div ></div>
+    </div>
+    <br>
+    <button id="btn">ENTER</button>
+</body>
+<script>
+    let min = document.getElementById("min")
+    let max = document.getElementById('max')
+    let dis = document.getElementById('display')
+    let num = document.querySelectorAll('#numbers>div')
+    let sub = document.getElementById('btn')
+    let ans = ""
+    for(let i=0;i<num.length;i++){
+        num[i].addEventListener('click', fun)
+    }
+
+    function fun(e){
+        let n = e.target.innerText 
+       ans+=n;
+       dis.value=ans 
+    }
+    sub.addEventListener('click', function(){
+        if(min.value>Number(ans)){
+            min.value=ans;
+            dis.value=''
+            ans=''
+        }else if(max.value<Number(ans)){
+            max.value=ans;
+            dis.value=''
+            ans=''
+        }else{
+            dis.value=''
+            ans=''
+        }
+    } )
+</script>
+
+</html>
