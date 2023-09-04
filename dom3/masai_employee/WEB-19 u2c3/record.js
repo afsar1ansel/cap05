@@ -12,32 +12,20 @@ let sortBtn = document.getElementById("filter")
 
 
 
-let alldata = [];
-sortBtn.addEventListener("click", ()=>{
-  let arr = []
-  if(select.value=='Frontend'){
-    arr = alldata.filter((ele,index)=>{
-      return ele.dep == "Frontend"
-    })
-  }else if(select.value=='Backend'){
-    arr = alldata.filter((ele,index)=>{
-      return ele.dep == "Backend"
-    })
-  }else if(select.value=='Operations'){
-    arr = alldata.filter((ele,index)=>{
-      return ele.dep == "Operations"
-    })
-  }else if(select.value=='HR'){
-    arr = alldata.filter((ele,index)=>{
-      return ele.dep == "HR"
-    })
-  }else if(select.value=='IA'){
-    arr = alldata.filter((ele,index)=>{
-      return ele.dep == "IA"
-    })
-  }
- display(arr)
-})
+let alldata = [ 
+  {name: 'md afsar ansari', Eid: '1', dep: 'Frontend', exp: '2', mail: 'ablelo778@gmail.com'},
+  
+
+  {name: 'md afsar ', Eid: '2', dep: 'Backend', exp: '3', mail: 'ablelo778@gmai'}, 
+  {name: 'md afsar ', Eid: '3', dep: 'Operations', exp: '3', mail: 'ablelo778@gmai'},
+  {name: 'md afsar ', Eid: '4', dep: 'Frontend', exp: '3', mail: 'ablelo778@gmai'},
+  {name: 'md afsar ', Eid: '5', dep: 'IA', exp: '3', mail: 'ablelo778@gmai'},
+  {name: 'md afsar ', Eid: '6', dep: 'HR', exp: '3', mail: 'ablelo778@gmai'},
+  {name: 'md afsar ', Eid: '7', dep: 'Backend', exp: '3', mail: 'ablelo778@gmai'},
+  {name: 'md afsar ', Eid: '8', dep: 'IA', exp: '3', mail: 'ablelo778@gmai'},
+  {name: 'md afsar ', Eid: '9', dep: 'Backend', exp: '3', mail: 'ablelo778@gmai'},
+  {name: 'md afsar ', Eid: '10', dep: 'Operations', exp: '3', mail: 'ablelo778@gmai'}
+];
 
 
 
@@ -48,7 +36,7 @@ form.addEventListener('submit', function(e){
     e.preventDefault()
 
     let data = {
-        id : alldata.length,
+       
         name : name.value,
         Eid : id.value,
         dep : dep.value,
@@ -56,11 +44,27 @@ form.addEventListener('submit', function(e){
         mail : mail.value,
         phone : phone.value,
     }
-    alldata.push(data)
-   
     
+    if(unique(data.Eid)){
+      alldata.push(data)
+    }
+    else{
+      console.log('Error')
+    }
+
     display(alldata)
+    
 })
+
+function unique(d){
+  console.log(d)
+  for(let i=0;i<alldata.length;i++){
+    if(alldata[i].Eid==d){
+      return false;
+    }
+  }
+  return true;
+}
 
 
 function display(data){
@@ -76,6 +80,19 @@ function display(data){
         const tform = document.createElement('td')
         const del = document.createElement('button')
     
+      
+        del.innerText = "Delete"
+    
+        
+    
+        del.addEventListener('click', function(){
+          // console.log(ele,index)
+          dele(ele.Eid,data)
+          // console.log(ele.Eid)
+          // display(data)
+          
+        });
+
         tname.innerText = ele.name
         tid.innerText = ele.Eid
         tdep.innerText = ele.dep
@@ -89,26 +106,52 @@ function display(data){
          }else if(texp.innerText<2){
           tform.innerText = 'Fresher'
          }
-        del.innerText = "Delete"
-    
-        tr.append(tname,tid,tdep,texp,tmail,tphone,tform,del)
+
+         tr.append(tname,tid,tdep,texp,tmail,tphone,tform,del)
         body.append(tr);
-    
-        del.addEventListener('click', function(){
-          deletefun(ele,index);
-            
-        });
-
     });
-
-   function deletefun(ele,index){
-    alldata.splice(index,1)
-    // console.log(alldata)
-      display(alldata)
-    };
+  
 };
 
+function dele(a,data){
+ 
+  // data.forEach((ele,index)=>{
+     for(let i=0;i<data.length;i++){
+      if(data[i].Eid==a){
+        data.splice(i,1)
+      //  break; 
+     }
+     }
 
+     for(let i=0;i<alldata.length;i++){
+      if(alldata[i].Eid==a){
+        alldata.splice(i,1)
+      //  break; 
+     }
+     }
+
+ 
+    
+     display(data)
+
+}
+
+sortBtn.addEventListener("click", ()=>{
+  if(select.value==""){
+    display(alldata)
+  }else{
+    let arr = alldata.filter((ele,index)=>{
+   
+      if(ele.dep==select.value){
+        return ele;
+      }
+    })
+      display(arr)
+  }
+ 
+  
+ 
+})
 
 
 
