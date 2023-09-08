@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function BankAccount(accountNumber, name, type,balance){
+        this.accountNumber = accountNumber;
+        this.name = name;
+        this.type = type;
+        this.balance = balance;
+        this.active = true;
+    }
+
+    BankAccount.prototype.deposite = function(amount){
+        if(amount>0){
+            this.balance+=amount
+        console.log(`Your amout have been deposited. current balance ${this.balance}`)
+        }
+    }
+ 
+    BankAccount.prototype.withdraw = function (amout){
+        if(this.isActive==true&&amout<=this.balance&&amout>0){
+            this.balance=this.balance-amout;
+            console.log(`your current balance ${this.balance}`)
+        }else{
+            console.log('unsufficient balance')
+        }
+    }
+
+    BankAccount.prototype.checkBalance = function (){
+        console.log(`Your current balance is ${this.balance}`)
+        
+    }
+
+    BankAccount.prototype.isActive = function (){
+        if(this.active==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+ function getTotalBalance(acounts){
+    let totalBalance = 0;
+
+    for(let acc of acounts){
+        if(acc.active) totalBalance+=acc.balance
+    }
+    return totalBalance
+ }
+
+
+ let member1 = new BankAccount('12345677', 'batman','saving', 1234566)
+ let member2 = new BankAccount('12345677', 'superman','saving', 127789)
+ let member3 = new BankAccount('12345677', 'ionman','saving', 5667789)
+ let member4 = new BankAccount('12345677', 'spiderman','saving', 1234789)
+ let member5 = new BankAccount('12345677', 'spyman','saving', 667789)
+
+ let arr = [member1,member2,member4,member3,member5]
+
+ console.log(getTotalBalance(arr))
+
+
+    
+</script>
+</html>

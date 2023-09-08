@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+</body>
+<script>
+    function book( title, author, genre, price){
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.price = price;
+    }
+
+    function authors(name, birthYear, nationality){
+        this.name = name;
+        this.birthYear = birthYear;
+        this.nationality = nationality
+    }
+
+    book.prototype.getBookInfo = function(){
+        console.log(`book's title:${this.title}, author's name:${this.author.name}, genre: ${this.genre},  price.${this.price}`)
+    }
+
+    
+
+   
+ 
+    var author1 = new authors('jemsy wiliam',1989, 'Canadian')
+    var author2 = new authors('jerry wiliam',1987, 'Egyptian')
+    var author3 = new authors('james hawk',1981, 'French')
+    var author4 = new authors('henry sar',1991, 'German')
+
+    var book1 = new book('happy potter', author1, 'fantasy', 499)
+    var book2 = new book('happy lotter', author2, 'fantasy', 399)
+    var book3 = new book('happy potter',author3, 'fantasy', 599)
+    var book4 = new book('Alice in wonderland', author4, 'fantasy', 999)
+
+
+    var arrBook = [book1,book2,book3,book4];
+    var arrAuthor = [author1,author2,author3,author4]
+    
+
+  
+
+
+    
+
+    function displayBooks(arr){
+        arr.map(ele=>{
+        console.log(`Book Details:
+        Book Name: ${ele.title}
+        Book Genre: ${ele.genre}
+        Book Price: ${ele.price}Rs
+    Author Details:
+        Name: ${ele.author.name}
+        DOB: ${ele.author.birthYear}
+        Nationality: ${ele.author.nationality}`)
+    })
+
+    }
+       
+
+displayBooks(arrBook)
+
+
+</script>
+</html>
