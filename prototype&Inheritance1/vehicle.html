@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+function vehicle(brand,model,speed,fuelType){
+
+    this.brand=brand;
+    this.model=model;
+    this.speed=speed;
+    this.fuelType=fuelType;
+}
+vehicle.prototype.accelerate = function(s){
+    this.speed+=s;
+}
+
+vehicle.prototype.brake = function(s){
+    this.speed-=s;
+}
+
+vehicle.prototype.refuel = function(){
+    console.log('vehicle is refueling.')
+}
+
+
+
+
+function car(brand,model,speed,fuelType,numberOfWheels ){
+       vehicle.call(this,brand,model,speed,fuelType)
+    //   Object.create(v1)
+    this.numberOfWheels=numberOfWheels;
+}
+
+car.prototype.honk = function(){
+    console.log('HONK HONK!!')
+}
+
+
+Object.setPrototypeOf(car.prototype, vehicle.prototype)
+
+
+function airplane(brand,model,speed,fuelType,numberOfEngines ){
+       vehicle.call(this,brand,model,speed,fuelType)
+    //   Object.create(v1)
+    this.numberOfEngines =numberOfEngines;
+}
+
+
+airplane.prototype.hasLandingGear = function(){
+    console.log('The Landing gear is activated')
+}
+
+airplane.prototype.takeOff = function(){
+    console.log('Airplane is taking off')
+}
+
+Object.setPrototypeOf(airplane.prototype, vehicle.prototype)
+
+
+
+
+
+let v1 = new vehicle('BMW',"S8",200,"petrol")
+
+
+
+let car1 = new car('BMW',"S8",200,"petrol",4)
+
+let plane1 = new airplane('BMW',"S8",200,"petrol",3)
+
+console.log(plane1.speed)
+
+plane1.refuel()
+
+
+</script>
+</html>

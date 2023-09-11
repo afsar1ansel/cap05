@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function FourWheeler(model,color,type,price){
+            this.model=model;
+            this.color=color;
+            this.type=type;
+            this.price=price;
+        }
+
+       
+
+        var car1 = new FourWheeler('S7','red','petrolium',2789349)
+        var car2 = Object.create(car1)
+
+        FourWheeler.prototype.break = function(){
+            console.log('Break is working')
+        }
+
+        FourWheeler.prototype.horn = function(){
+            console.log('HONK HONK!!')
+        }
+
+        FourWheeler.prototype.refuel = function(){
+            console.log('Car is refueling')
+        }
+
+      
+
+        
+car2.model = 'S8'
+car2.color = 'black'
+car2.type = 'petrolium'
+car2.price = 7898768
+
+    console.log(car2.break())
+    </script>
+</body>
+</html>
