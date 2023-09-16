@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #display{
+            height: 10%;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div><img src="" alt="" id="display"></div>
+    <button id="start"></button>
+    <button id="prev"></button>
+    <button id="next"></button>
+    <button id="pause"></button>
+    
+</body>
+<script>
+ 
+    let imgs = [ "https://burst.shopifycdn.com/photos/grey-cat-lays-in-sun.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/business-cat-in-office.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/blue-eyed-cat-daydreams.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/blue-eyed-cat-peeking.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/grey-cat-with-blue-eyes.jpg?width=400&format=pjpg&exif=1&iptc=1", "https://burst.shopifycdn.com/photos/grey-cat-lays-in-sun.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/business-cat-in-office.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/blue-eyed-cat-daydreams.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/blue-eyed-cat-peeking.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/grey-cat-with-blue-eyes.jpg?width=400&format=pjpg&exif=1&iptc=1", "https://burst.shopifycdn.com/photos/grey-cat-lays-in-sun.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/business-cat-in-office.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/blue-eyed-cat-daydreams.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/blue-eyed-cat-peeking.jpg?width=400&format=pjpg&exif=1&iptc=1",
+  "https://burst.shopifycdn.com/photos/grey-cat-with-blue-eyes.jpg?width=400&format=pjpg&exif=1&iptc=1"]
+        
+        
+    
+
+let dis = document.getElementById('display')
+let start = document.getElementById('start')
+let pause = document.getElementById('pause')
+let prev = document.getElementById('prev')
+let next = document.getElementById('next')
+
+
+prev.innerText = '<'
+next.innerText = '>'
+start.innerText = 'Star'
+pause.innerText = 'Pause'
+
+let interId;
+let i=0;
+start.addEventListener('click', function(){
+  interId = setInterval(shows,1500)
+  console.log(i)
+})
+
+function shows(){
+    if(i==imgs.length){
+        i=0;
+    }
+
+dis.src = imgs[i]
+i++
+
+}
+
+pause.addEventListener('click', function(){
+    clearInterval(interId)
+})
+
+prev.addEventListener('click', function(){
+    
+    clearInterval(interId)
+    if(i==0){
+        i=imgs.length-1
+        dis.src = imgs[i]
+        console.log(i,'if')
+    
+    }else{
+        dis.src = imgs[i--]
+        console.log(i,'else')
+    }
+   
+
+})
+
+next.addEventListener('click', function(){
+    
+    clearInterval(interId)
+    if(i==imgs.length){
+        i=0
+        dis.src = imgs[i]
+        console.log(i,'if')
+    
+    }else{
+        dis.src = imgs[i++]
+        console.log(i,'else')
+    }
+   
+
+})
+
+
+
+    
+</script>
+</html>

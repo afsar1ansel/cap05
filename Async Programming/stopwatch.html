@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let body = document.querySelector('body')
+    let display = document.createElement('div')
+    let start = document.createElement('button')
+    let pause = document.createElement('button')
+    let reset = document.createElement('button')
+
+    
+    display.innerText = '00'
+    start.innerText = 'Start'
+    pause.innerText = 'Pause'
+    reset.innerText = 'Reset'
+
+    body.append(display,start,pause,reset)
+
+    var ml = 0;
+    var s = 0;
+    var m = 0;
+    var h = 0;
+    var flag = true;
+    var pf = true;
+    var inter;
+    start.addEventListener('click', function(){
+
+        if(flag==true){
+            flag=false;
+            inter = setInterval(displayStart,10)
+        }
+       
+       
+    })
+
+    function displayStart(){
+        let fs=0;
+        let fm=0;
+        let fh=0;
+        if(ml==100){
+            ml=0;
+            s++;
+        }
+        if(s==60){
+            s=0;
+            m++
+        }
+        if(m==60){
+            m=0;
+            h++
+        }
+        if(s>=10){
+            fs="";
+        }
+        if(m>=10){
+            fm="";
+        }
+        if(h>=10){
+            fh="";
+        }
+
+        if(m==0&&h==0){
+            display.innerText = `${fs}${s}:${++ml}`
+        }
+        if(m!=0&&h==0){
+            display.innerText = `${fm}${m}:${fs}${s}:${++ml}`
+        } else if(h!=0){
+            display.innerText = `${fh}${h}:${fm}${m}:${fs}${s}:${++ml}`
+        }
+
+    }
+    
+    pause.addEventListener('click', function(){
+        flag=true;
+        clearInterval(inter);
+    })
+
+    reset.addEventListener('click', function(){
+       flag=true;
+        ml = 0;
+         s = 0;
+         m = 0;
+         h = 0;
+        display.innerText = `${ml}`
+        clearInterval(inter);
+        
+    })
+
+</script>
+</html>
