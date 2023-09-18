@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Virtual Restaurant</title>
+    <style>
+        body {
+            font-family: Speedee,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ffbc0d;;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            /* margin: 0 auto; */
+            padding: 20px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            margin-bottom: -20px;
+            padding: 20px;
+        }
+
+        .menu-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .menu-item h2 {
+            margin: 0;
+        }
+
+        .menu-item p {
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #ffbc0d;;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        #body{
+            display: flex;
+            padding-left: 10%;
+        }
+        #screen{
+            margin-left: 10%;
+        }
+        .click{
+            display: flex;
+        }
+        #display{
+            max-width: 500px;
+            /* margin: 0 auto; */
+            padding: 20px;
+        }
+        #display img{
+            max-width: 100%;
+            height: auto;
+        }
+        #okButon{
+            background-color: #333;
+            color: #f2f2f2;
+            border-radius: 10%;
+            width: 40%;
+            height: 20%;
+        }
+
+        #okButon:hover{
+            background-color: yellow;
+            color: black;
+
+        }
+        #submit{
+            color: rgb(12, 0, 0);
+            background-color: #ffbc0d;
+            border: #f2f2f2;
+            width: 80%;
+            height: 40px;
+            cursor: pointer;
+        }
+        #submit:hover{
+            color: rgb(5, 0, 0);
+            background-color: #e4a505;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My McDonald’s franchise 🍔🍟 </h1>
+        <p>Delicious Food at Your Fingertips</p>
+    </header>
+<div id="body">
+    <div class="container">
+        <h2>Menu</h2>
+
+        <form action="/food.html" id="myForm">
+           
+            <label for="food1"> 
+                <div class="menu-item">
+                <img src="https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-cheeseburger-2:1-3-product-tile-desktop?wid=829&hei=515&dpr=off" alt="Burger">
+                <h2>Classic Burger</h2>
+                <p>A juicy beef patty with lettuce, tomato, and special sauce.</p>
+                <p>Price: $8.99</p>
+            </div>
+        </label>
+        <div class="click"> <input type="checkbox" name="options[]" id="food1" value="https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-cheeseburger-2:1-3-product-tile-desktop?wid=829&hei=515&dpr=off"><h6>click me</h6></div>
+
+        <label for="food2"> 
+            <div class="menu-item">
+                <img src="https://images.summitmedia-digital.com/esquiremagph/images/2017/05/06/mcpizza_main.png" alt="Pizza">
+                <h2>Pepperoni Pizza</h2>
+                <p>Delicious pizza with pepperoni, cheese, and tomato sauce.</p>
+                <p>Price: $10.99</p>
+            </div>
+    </label>
+    <div class="click"> <input type="checkbox" name="options[]" id="food2" value="https://images.summitmedia-digital.com/esquiremagph/images/2017/05/06/mcpizza_main.png"><h6>click me</h6></div>
+
+    <label for="food3"> 
+        <div class="menu-item">
+            <img src="https://i.ytimg.com/vi/HqS4Exect-Q/sddefault.jpg" alt="Pasta">
+            <h2>Spaghetti Carbonara</h2>
+            <p>Classic Italian pasta with bacon, eggs, and Parmesan cheese.</p>
+            <p>Price: $12.99</p>
+        </div>
+</label>
+<div class="click"> <input type="checkbox" name="options[]" id="food3" value="https://i.ytimg.com/vi/HqS4Exect-Q/sddefault.jpg"><h6>click me</h6></div>
+
+<label for="food3"> 
+    <div class="menu-item">
+        <img src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2023-07/230720-mcdonalds-nuggets-cs-9e0c25.jpg" alt="Pasta">
+        <h2>Chicken Nuggets</h2>
+        <p>Made of 45% chicken, with the rest a combination of batter, seasoning, and oil.</p>
+        <p>Price: $10.99</p>
+    </div>
+</label>
+<div class="click"> <input type="checkbox" name="options[]" id="food4" value="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2023-07/230720-mcdonalds-nuggets-cs-9e0c25.jpg"><h6>click me</h6></div>
+
+  <input type="submit" name="submit" id="submit">
+       
+        </form>
+
+
+    </div>
+    <div id="screen">
+        <h1 id="msg">What are we Having today 😍</h1>
+        <br><br>
+        <div id="display"></div>
+    </div>
+
+</div>
+  
+   
+
+    <footer>
+        &copy; 2023 My Virtual Restaurant
+    </footer>
+</body>
+
+<script>
+
+    let display = document.getElementById('display')
+    let myForm = document.getElementById('myForm')
+    let msg = document.getElementById('msg')
+    let selectedopt = []
+
+    var okbtn;
+    myForm.addEventListener('submit', function(e){
+        e.preventDefault()
+       
+
+        let randomTime = Math.floor(Math.random() * 10);
+        
+        const boxes = myForm.elements['options[]']
+
+        for(let i=0;i<boxes.length;i++){
+            let obj={}
+            if(boxes[i].checked){
+               let randomId = Math.floor(Math.random()*3000)+1000
+
+                obj.img=boxes[i].value
+                obj.id=randomId;
+                selectedopt.push(obj)
+                
+            }
+
+            console.log(selectedopt)
+        }
+
+       
+        if(selectedopt.length==0){
+                    msg.innerText= 'Please Select Food First 🤩🌮🍔🍟🥤'
+
+                    let but = document.createElement('button')
+                    but.innerText = 'OK!'
+                    but.setAttribute("id", "okButon");
+
+                    display.append(but)
+                    okbtn = document.getElementById('okButon')
+                    okbtn.addEventListener('click' , function(){
+                    location.reload()
+                    console.log('yess im ok')
+                    })
+                   
+        }else{
+                    msg.innerText= 'Your Order will be here soon 🧑‍🍳🍳🍽️'
+
+                        let otpPromise = new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                        resolve()
+                        }, randomTime*1000);
+
+                    });
+
+                       otpPromise.then((val) => foodReady());
+
+            }
+
+      
+        
+    })
+
+
+
+
+
+
+
+
+
+
+    function foodReady(){
+        // console.log(selectedopt)
+
+        for(let i=0;i<selectedopt.length;i++){
+            let img = document.createElement('img')
+        img.src = selectedopt[i].img;
+        let foodId = document.createElement('p')
+        foodId.innerText = `Order Id: ${selectedopt[i].id}`
+
+        display.append(foodId,img)
+        }
+
+        
+        let but = document.createElement('button')
+        but.innerText = 'OK!'
+        but.setAttribute("id", "okButon");
+
+        display.append(but)
+        okbtn = document.getElementById('okButon')
+        okbtn.addEventListener('click' , function(){
+       location.reload()
+       console.log('yess im ok')
+    })
+
+        msg.innerText= "Enjoy your meal 🍝🥗🥞"
+    }
+
+     
+
+   
+
+
+</script>
+</html>
